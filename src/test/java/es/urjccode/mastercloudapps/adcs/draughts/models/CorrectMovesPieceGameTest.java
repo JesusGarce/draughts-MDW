@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class CorrectMovesPawnGameTest extends GameTest {
+public class CorrectMovesPieceGameTest extends GameTest {
 
     private void assertMove(Coordinate... coordinates){
         assertNull(this.game.move(coordinates));
