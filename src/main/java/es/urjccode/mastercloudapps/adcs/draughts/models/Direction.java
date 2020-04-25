@@ -43,10 +43,10 @@ enum Direction {
     }
 
     static List<Direction> getSouthDirections(){
-        List<Direction> northDirections = new LinkedList<>();
-        northDirections.add(Direction.SE);
-        northDirections.add(Direction.SW);
-        return northDirections;
+        List<Direction> southDirections = new LinkedList<>();
+        southDirections.add(Direction.SE);
+        southDirections.add(Direction.SW);
+        return southDirections;
     }
 
 }

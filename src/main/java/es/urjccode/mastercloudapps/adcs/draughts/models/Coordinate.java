@@ -94,7 +94,7 @@ public class Coordinate {
         List<Coordinate> diagonalCoordinates = new ArrayList<Coordinate>();
         for (Direction direction : Direction.getSouthDirections()) {
             Coordinate diagonalCoordinate = this.plus(direction.getDistanceCoordinate(1));
-            if (diagonalCoordinate != null && diagonalCoordinate.isWithIn())
+            if (diagonalCoordinate.isWithIn())
                 diagonalCoordinates.add(diagonalCoordinate);
         }
         return diagonalCoordinates;
@@ -104,7 +104,7 @@ public class Coordinate {
         List<Coordinate> diagonalCoordinates = new ArrayList<Coordinate>();
         for (Direction direction : Direction.getNorthDirections()) {
             Coordinate diagonalCoordinate = this.plus(direction.getDistanceCoordinate(1));
-            if (diagonalCoordinate != null && diagonalCoordinate.isWithIn())
+            if (diagonalCoordinate.isWithIn())
                 diagonalCoordinates.add(diagonalCoordinate);
         }
         return diagonalCoordinates;

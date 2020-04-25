@@ -48,7 +48,7 @@ class Board {
             }
         }
         if (!coordinatesPieceCouldEat.isEmpty())
-            removePieceWhichCouldEat(coordinatesPieceCouldEat);
+            removeRandomPiece(coordinatesPieceCouldEat);
     }
 
     private boolean checkIfPieceCouldEat(Coordinate coordinate, Color color){
@@ -68,12 +68,10 @@ class Board {
         return false;
     }
 
-    Piece removePieceWhichCouldEat(List<Coordinate> coordinates){
+    Piece removeRandomPiece(List<Coordinate> coordinates){
         int pieceToRemove = (int)(Math.random() * coordinates.size());
-        System.out.println("Come on! You should eat! We've removed your piece in position: "+ coordinates.get(pieceToRemove).toString());
         return remove(coordinates.get(pieceToRemove));
     }
-
 
     List<Piece> getBetweenDiagonalPieces(Coordinate origin, Coordinate target) {
         List<Piece> betweenDiagonalPieces = new ArrayList<Piece>();
@@ -83,16 +81,6 @@ class Board {
                 if (piece != null)
                     betweenDiagonalPieces.add(piece);
             }
-        return betweenDiagonalPieces;
-    }
-
-    int getAmountBetweenDiagonalPieces(Coordinate origin, Coordinate target) {
-        if (!origin.isOnDiagonal(target))
-            return 0;
-        int betweenDiagonalPieces = 0;
-        for (Coordinate coordinate : origin.getBetweenDiagonalCoordinates(target))
-            if (this.getPiece(coordinate) != null)
-                betweenDiagonalPieces++;
         return betweenDiagonalPieces;
     }
 
