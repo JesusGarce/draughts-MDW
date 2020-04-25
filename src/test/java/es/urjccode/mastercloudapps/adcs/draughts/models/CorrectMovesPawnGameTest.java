@@ -1,5 +1,6 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 
@@ -10,6 +11,11 @@ public class CorrectMovesPawnGameTest extends GameTest {
     private void assertMove(Coordinate... coordinates){
         assertNull(this.game.move(coordinates));
         assertEquals(this.game, this.expectedGame);
+    }
+
+    private void assertMoveFail(Coordinate... coordinates){
+        assertNull(this.game.move(coordinates));
+        assertNotEquals(this.game, this.expectedGame);
     }
 
     @Test
@@ -175,7 +181,7 @@ public class CorrectMovesPawnGameTest extends GameTest {
             "        ",
             "        ");
         this.setExpectedGame(Color.BLACK,
-            " B      ",
+            " b      ",
             "        ",
             "        ",
             "        ",
@@ -183,7 +189,7 @@ public class CorrectMovesPawnGameTest extends GameTest {
             "        ",
             "        ",
             "        ");
-        this.assertMove(
+        this.assertMoveFail(
             new Coordinate(1,0), 
             new Coordinate(0,1));
     }
@@ -207,8 +213,8 @@ public class CorrectMovesPawnGameTest extends GameTest {
             "        ",
             "        ",
             "        ",
-            "  N     ");
-        this.assertMove(
+            "  n     ");
+        this.assertMoveFail(
                 new Coordinate(6,3), 
                 new Coordinate(7,2));
     }

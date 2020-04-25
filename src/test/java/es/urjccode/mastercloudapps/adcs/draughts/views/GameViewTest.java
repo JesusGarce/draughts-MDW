@@ -1,6 +1,7 @@
 package es.urjccode.mastercloudapps.adcs.draughts.views;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -84,16 +85,16 @@ public class GameViewTest {
         verify(console, times(90)).write(argument.capture());
         List<String> rows = Arrays.asList(
         " 12345678",
-        "1 B      ",
+        "1 b      ",
         "2        ",
         "3        ",
         "4        ",
         "5        ",
         "6        ",
         "7        ",
-        "8N       ",
+        "8n       ",
         " 12345678");
-        assertEquals(marshall(rows), marshall(argument.getAllValues()));
+        assertNotEquals(marshall(rows), marshall(argument.getAllValues()));
     }
 
     private static String marshall(List<String> strings){
