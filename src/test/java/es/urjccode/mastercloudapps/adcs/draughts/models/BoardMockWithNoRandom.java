@@ -9,7 +9,7 @@ class BoardMockWithNoRandom extends Board {
     }
 
     @Override
-    Piece removePieceWhichCouldEat(List<Coordinate> coordinates){
+    Piece removeRandomPiece(List<Coordinate> coordinates){
         return remove(coordinates.get(0));
     }
 
