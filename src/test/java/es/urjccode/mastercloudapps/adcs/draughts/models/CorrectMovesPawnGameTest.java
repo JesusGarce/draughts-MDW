@@ -189,7 +189,7 @@ public class CorrectMovesPawnGameTest extends GameTest {
             "        ",
             "        ",
             "        ");
-        this.assertMoveFail(
+        this.assertMove(
             new Coordinate(1,0), 
             new Coordinate(0,1));
     }
@@ -214,7 +214,7 @@ public class CorrectMovesPawnGameTest extends GameTest {
             "        ",
             "        ",
             "  n     ");
-        this.assertMoveFail(
+        this.assertMove(
                 new Coordinate(6,3), 
                 new Coordinate(7,2));
     }

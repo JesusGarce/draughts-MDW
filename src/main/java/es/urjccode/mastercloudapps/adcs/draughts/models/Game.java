@@ -77,7 +77,7 @@ public class Game {
 		if (this.board.getPiece(coordinates[pair + 1]).isLimit(coordinates[pair + 1])) {
 			Color color = this.board.getColor(coordinates[pair + 1]);
 			this.board.remove(coordinates[pair + 1]);
-			this.board.put(coordinates[pair + 1], new Draught(color));
+			this.board.put(coordinates[pair + 1], new Pawn(color));
 		}
 	}
 

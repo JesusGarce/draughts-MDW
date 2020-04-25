@@ -94,7 +94,7 @@ public class GameViewTest {
         "7        ",
         "8n       ",
         " 12345678");
-        assertNotEquals(marshall(rows), marshall(argument.getAllValues()));
+        assertEquals(marshall(rows), marshall(argument.getAllValues()));
     }
 
     private static String marshall(List<String> strings){
