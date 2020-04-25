@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class IncorrectMovesPawnGameTest extends GameTest {
+public class IncorrectMovesPieceGameTest extends GameTest {
 
     private Color color;
     private String[] strings;

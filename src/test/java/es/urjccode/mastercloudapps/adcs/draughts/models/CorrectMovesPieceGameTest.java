@@ -1,15 +1,21 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class CorrectMovesDraughtGameTest extends GameTest {
+public class CorrectMovesPieceGameTest extends GameTest {
 
     private void assertMove(Coordinate... coordinates){
         assertNull(this.game.move(coordinates));
         assertEquals(this.game, this.expectedGame);
+    }
+
+    private void assertMoveFail(Coordinate... coordinates){
+        assertNull(this.game.move(coordinates));
+        assertNotEquals(this.game, this.expectedGame);
     }
 
     @Test
@@ -20,7 +26,7 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             "        ",
             "        ",
             "        ",
-            "B       ",
+            "b       ",
             "        ",
             "        ");
         this.setExpectedGame(Color.BLACK,
@@ -28,7 +34,7 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             "        ",
             "        ",
             "        ",
-            " B      ",
+            " b      ",
             "        ",
             "        ",
             "        ");
@@ -43,7 +49,7 @@ public class CorrectMovesDraughtGameTest extends GameTest {
         this.setGame(Color.BLACK,
             "        ",
             "        ",
-            "   N    ",
+            "   n    ",
             "        ",
             "        ",
             "b       ",
@@ -53,7 +59,7 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             "        ",
             "        ",
             "        ",
-            "    N   ",
+            "    n   ",
             "        ",
             "b       ",
             "        ",
@@ -70,14 +76,14 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             "        ",
             "        ",
             "  n     ",
-            " B      ",
+            " b      ",
             "        ",
             "        ",
             "        ");
         this.setExpectedGame(Color.BLACK,
             "        ",
             "        ",
-            "   B    ",
+            "   b    ",
             "        ",
             "        ",
             "        ",
@@ -92,7 +98,7 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             "        ",
             "        ",
             "        ",
-            "N       ",
+            "n       ",
             " b      ",
             "        ",
             "        ",
@@ -103,7 +109,7 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             "        ",
             "        ",
             "        ",
-            "  N     ",
+            "  n     ",
             "        ",
             "        ");
         this.assertMove(
@@ -119,12 +125,12 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             "   n    ",
             "        ",
             " n      ",
-            "B       ",
+            "b       ",
             "        ",
             "        ");
         this.setExpectedGame(Color.BLACK,
             "        ",
-            "    B   ",
+            "    b   ",
             "        ",
             "        ",
             "        ",
@@ -142,7 +148,7 @@ public class CorrectMovesDraughtGameTest extends GameTest {
         this.setGame(Color.BLACK,
             "        ",
             "        ",
-            " N      ",
+            " n      ",
             "  b     ",
             "        ",
             "    b   ",
@@ -155,7 +161,7 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             "        ",
             "        ",
             "        ",
-            "     N  ",
+            "     n  ",
             "        ");
         this.assertMove(
             new Coordinate(2, 1), 
@@ -163,184 +169,54 @@ public class CorrectMovesDraughtGameTest extends GameTest {
             new Coordinate(6, 5));
     }
 
-    
     @Test
-    public void testGivenGameWhenMoveWHITEThenWithoutNOT_ADVANCED() {
-        setGame(Color.WHITE,
+    public void testGivenGameWhenWhitePawnAtLimitThenNewDraugts(){
+        this.setGame(Color.WHITE,
+            "        ",
+            "b       ",
             "        ",
             "        ",
             "        ",
-            "        ",
-            "       B",
             "        ",
             "        ",
             "        ");
-        setExpectedGame(Color.BLACK,
+        this.setExpectedGame(Color.BLACK,
+            " b      ",
             "        ",
             "        ",
             "        ",
             "        ",
             "        ",
             "        ",
-            "        ",
-            "    B   ");
-        assertMove(
-            new Coordinate(4, 7), 
-            new Coordinate(7, 4));
+            "        ");
+        this.assertMove(
+            new Coordinate(1,0), 
+            new Coordinate(0,1));
     }
 
     @Test
-    public void testGivenGameWhenMoveBLACKThenWithoutNOT_ADVANCED() {
-        setGame(Color.BLACK,
-            "        ",
-            "N       ",
+    public void testGivenGameWhenBlackPawnAtLimitThenNewDraugts(){
+        this.setGame(Color.BLACK,
             "        ",
             "        ",
             "        ",
+            "b       ",
             "        ",
             "        ",
+            "   n    ",
             "        ");
-        setExpectedGame(Color.WHITE,
-            " N      ",
+        this.setExpectedGame(Color.WHITE,
             "        ",
             "        ",
             "        ",
+            "b       ",
             "        ",
             "        ",
             "        ",
-            "        ");
-        assertMove(
-            new Coordinate(1, 0), 
-            new Coordinate(0, 1));
+            "  n     ");
+        this.assertMove(
+                new Coordinate(6,3), 
+                new Coordinate(7,2));
     }
 
-    
-    @Test
-    public void testGivenGameWhenMoveWHITEThenWithoutWITHOUT_EATING() {
-        setGame(Color.WHITE,
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "    B   ",
-            "        ",
-            "        ");
-        setExpectedGame(Color.BLACK,
-            "        ",
-            "        ",
-            "        ",
-            "  B     ",
-            "        ",
-            "        ",
-            "        ",
-            "        ");
-        assertMove(
-            new Coordinate(5, 4), 
-            new Coordinate(3, 2));
-    }
-
-    @Test
-    public void testGivenGameWhenMoveBLACKThenWithoutWITHOUT_EATING() {
-        setGame(Color.BLACK,
-            "        ",
-            "        ",
-            "        ",
-            "  N     ",
-            "        ",
-            "    b   ",
-            "        ",
-            "        ");
-        setExpectedGame(Color.WHITE,
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "      N ");
-        assertMove(
-            new Coordinate(3, 2), 
-            new Coordinate(7, 6));
-    }
-
-    @Test
-    public void testGivenGameWhenMoveWHITEThenWithoutTOO_MUCH_ADVANCED() {
-        setGame(Color.WHITE,
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "B       ",
-            "        ",
-            "        ");
-        setExpectedGame(Color.BLACK,
-            "     B  ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ");
-        assertMove(
-            new Coordinate(5, 0), 
-            new Coordinate(0, 5));
-    }
-
-    @Test
-    public void testGivenGameWhenMoveBLACKThenWithoutTOO_MUCH_ADVANCED() {
-        setGame(Color.BLACK,
-            "        ",
-            "        ",
-            " N      ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ");
-        setExpectedGame(Color.WHITE,
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "    N   ",
-            "        ",
-            "        ");
-        assertMove(
-            new Coordinate(2, 1), 
-            new Coordinate(5, 4));
-    }
-
-    @Test
-    public void testGivenGameWhenMoveWHITEThenWithoutTOO_MUCH_EATINGS() {
-        setGame(Color.WHITE,
-            "        ",
-            "    n   ",
-            "        ",
-            "        ",
-            "        ",
-            "    n n ",
-            " n      ",
-            "B       ");
-        setExpectedGame(Color.BLACK,
-            "   B    ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ",
-            "        ");
-        assertMove(
-            new Coordinate(7, 0), 
-            new Coordinate(4, 3),
-            new Coordinate(6, 5),
-            new Coordinate(4, 7),
-            new Coordinate(0, 3));
-    }
-    
 }

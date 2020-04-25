@@ -10,10 +10,8 @@ import org.junit.runners.Suite;
     PieceTest.class,
     GameBuilderTest.class,
     InitialGameTest.class,
-    IncorrectMovesPawnGameTest.class,
-    CorrectMovesPawnGameTest.class,
-    IncorrectMovesDraughtGameTest.class,
-    CorrectMovesDraughtGameTest.class,
+    IncorrectMovesPieceGameTest.class,
+    CorrectMovesPieceGameTest.class,
     IsBlockedGameTest.class,
     RemoveRandomPieceIfDontEatTest.class} )
 public final class AllModelTest {

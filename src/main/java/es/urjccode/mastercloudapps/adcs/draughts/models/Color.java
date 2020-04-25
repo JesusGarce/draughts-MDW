@@ -31,8 +31,4 @@ public enum Color {
     boolean isWhite(){
         return (this == WHITE);
     }
-
-    boolean isBlack(){
-        return (this == BLACK);
-    }
 }
