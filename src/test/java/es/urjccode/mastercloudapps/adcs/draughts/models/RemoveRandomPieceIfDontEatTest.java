@@ -38,7 +38,7 @@ public class RemoveRandomPieceIfDontEatTest extends GameTest {
             "        ",
             "        ",
             "        ");
-        this.assertMoveFail(
+        this.assertMove(
             new Coordinate(5, 7),
             new Coordinate(4, 6)
         );
@@ -46,7 +46,7 @@ public class RemoveRandomPieceIfDontEatTest extends GameTest {
 
     @Test
     public void testMovePieceAndDontEatAnythingManyOptions(){
-        this.setGame(Color.WHITE,
+        this.setGameWithoutRandomBoard(Color.WHITE,
             "        ",
             "        ",
             "        ",
@@ -55,7 +55,7 @@ public class RemoveRandomPieceIfDontEatTest extends GameTest {
             "b b b  b",
             "        ",
             "        ");
-        this.setExpectedGame(Color.BLACK,
+        this.setExpectedGameWithoutRandomBoard(Color.BLACK,
             "        ",
             "        ",
             "        ",
@@ -64,7 +64,7 @@ public class RemoveRandomPieceIfDontEatTest extends GameTest {
             "  b b   ",
             "        ",
             "        ");
-        this.assertMoveFail(
+        this.assertMove(
             new Coordinate(5, 7),
             new Coordinate(4, 6)
         );

@@ -23,5 +23,16 @@ public enum Color {
                     return color;
         return null;
     }
-	
+
+    static Color getOppositeColor(Color color){
+        return (color.compareTo(WHITE) == 0) ? BLACK : WHITE;
+    }
+
+    boolean isWhite(){
+        return (this == WHITE);
+    }
+
+    boolean isBlack(){
+        return (this == BLACK);
+    }
 }

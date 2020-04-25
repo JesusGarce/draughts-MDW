@@ -70,7 +70,9 @@ public class Game {
 		if (forRemoving != null) {
 			removedCoordinates.add(0, forRemoving);
 			this.board.remove(forRemoving);
-		}
+		} else {
+            this.board.removeIfSomeoneCanEat(this.getTurnColor());
+        }
 		this.board.move(coordinates[pair], coordinates[pair + 1]);
 		if (this.board.getPiece(coordinates[pair + 1]).isLimit(coordinates[pair + 1])) {
 			Color color = this.board.getColor(coordinates[pair + 1]);

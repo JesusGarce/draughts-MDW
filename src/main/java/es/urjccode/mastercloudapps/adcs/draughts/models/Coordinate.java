@@ -90,6 +90,27 @@ public class Coordinate {
         return diagonalCoordinates;
     }
 
+    List<Coordinate> getPossibleMovesCoordinatesWhite(){
+        List<Coordinate> diagonalCoordinates = new ArrayList<Coordinate>();
+        for (Direction direction : Direction.getSouthDirections()) {
+            Coordinate diagonalCoordinate = this.plus(direction.getDistanceCoordinate(1));
+            if (diagonalCoordinate != null && diagonalCoordinate.isWithIn())
+                diagonalCoordinates.add(diagonalCoordinate);
+        }
+        return diagonalCoordinates;
+    }
+
+    List<Coordinate> getPossibleMovesCoordinatesBlack(){
+        List<Coordinate> diagonalCoordinates = new ArrayList<Coordinate>();
+        for (Direction direction : Direction.getNorthDirections()) {
+            Coordinate diagonalCoordinate = this.plus(direction.getDistanceCoordinate(1));
+            if (diagonalCoordinate != null && diagonalCoordinate.isWithIn())
+                diagonalCoordinates.add(diagonalCoordinate);
+        }
+        return diagonalCoordinates;
+    }
+
+
     boolean isBlack() {
         return (this.row + this.column) % 2 != 0;
     }

@@ -2,6 +2,7 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 class Board {
@@ -35,6 +36,44 @@ class Board {
         assert this.getPiece(origin) != null;
         this.put(target, this.remove(origin));
     }
+
+    void removeIfSomeoneCanEat(Color color){
+        List<Coordinate> coordinatesPieceCouldEat = new LinkedList<>();
+        for (int i = 0; i < Coordinate.getDimension(); i++) {
+            for (int j = 0; j < Coordinate.getDimension(); j++) {
+                Coordinate actualCoordinate = new Coordinate(i, j);
+                if (checkIfPieceCouldEat(actualCoordinate, color)) {
+                    coordinatesPieceCouldEat.add(actualCoordinate);
+                }
+            }
+        }
+        if (!coordinatesPieceCouldEat.isEmpty())
+            removePieceWhichCouldEat(coordinatesPieceCouldEat);
+    }
+
+    private boolean checkIfPieceCouldEat(Coordinate coordinate, Color color){
+        if ((isEmpty(coordinate)) || (getColor(coordinate) != color))
+            return false;
+
+        List<Coordinate> diagonalCoordinates;
+        if (color.isWhite())
+            diagonalCoordinates = coordinate.getPossibleMovesCoordinatesWhite();
+        else
+            diagonalCoordinates = coordinate.getPossibleMovesCoordinatesBlack();
+
+        for (Coordinate c : diagonalCoordinates) {
+            if (!(isEmpty(c)) && getColor(c) == Color.getOppositeColor(color))
+                return true;
+        }
+        return false;
+    }
+
+    Piece removePieceWhichCouldEat(List<Coordinate> coordinates){
+        int pieceToRemove = (int)(Math.random() * coordinates.size());
+        System.out.println("Come on! You should eat! We've removed your piece in position: "+ coordinates.get(pieceToRemove).toString());
+        return remove(coordinates.get(pieceToRemove));
+    }
+
 
     List<Piece> getBetweenDiagonalPieces(Coordinate origin, Coordinate target) {
         List<Piece> betweenDiagonalPieces = new ArrayList<Piece>();

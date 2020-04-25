@@ -4,13 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import es.urjccode.mastercloudapps.adcs.draughts.models.*;
 import org.junit.Test;
-
-import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
-import es.urjccode.mastercloudapps.adcs.draughts.models.Game;
-import es.urjccode.mastercloudapps.adcs.draughts.models.State;
-import es.urjccode.mastercloudapps.adcs.draughts.models.Color;
-import es.urjccode.mastercloudapps.adcs.draughts.models.GameBuilder;
 
 public class PlayControllerTest {
 
@@ -56,7 +51,7 @@ public class PlayControllerTest {
             "     b  ",
             "b       ",
             "        ",
-            "        ").build();
+            "        ").board(new BoardMockWithoutRemovePieces()).build();
         playController = new PlayController(game, new State());
         Coordinate origin = new Coordinate(5, 0);
         Coordinate target = new Coordinate(4, 1);
