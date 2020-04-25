@@ -2,6 +2,7 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 class Board {
@@ -36,6 +37,42 @@ class Board {
         this.put(target, this.remove(origin));
     }
 
+    void removeIfSomeoneCanEat(Color color){
+        List<Coordinate> coordinatesPieceCouldEat = new LinkedList<>();
+        for (int i = 0; i < Coordinate.getDimension(); i++) {
+            for (int j = 0; j < Coordinate.getDimension(); j++) {
+                Coordinate actualCoordinate = new Coordinate(i, j);
+                if (checkIfPieceCouldEat(actualCoordinate, color)) {
+                    coordinatesPieceCouldEat.add(actualCoordinate);
+                }
+            }
+        }
+        if (!coordinatesPieceCouldEat.isEmpty())
+            removeRandomPiece(coordinatesPieceCouldEat);
+    }
+
+    private boolean checkIfPieceCouldEat(Coordinate coordinate, Color color){
+        if ((isEmpty(coordinate)) || (getColor(coordinate) != color))
+            return false;
+
+        List<Coordinate> diagonalCoordinates;
+        if (color.isWhite())
+            diagonalCoordinates = coordinate.getPossibleMovesCoordinatesWhite();
+        else
+            diagonalCoordinates = coordinate.getPossibleMovesCoordinatesBlack();
+
+        for (Coordinate c : diagonalCoordinates) {
+            if (!(isEmpty(c)) && getColor(c) == Color.getOppositeColor(color))
+                return true;
+        }
+        return false;
+    }
+
+    Piece removeRandomPiece(List<Coordinate> coordinates){
+        int pieceToRemove = (int)(Math.random() * coordinates.size());
+        return remove(coordinates.get(pieceToRemove));
+    }
+
     List<Piece> getBetweenDiagonalPieces(Coordinate origin, Coordinate target) {
         List<Piece> betweenDiagonalPieces = new ArrayList<Piece>();
         if (origin.isOnDiagonal(target))
@@ -44,16 +81,6 @@ class Board {
                 if (piece != null)
                     betweenDiagonalPieces.add(piece);
             }
-        return betweenDiagonalPieces;
-    }
-
-    int getAmountBetweenDiagonalPieces(Coordinate origin, Coordinate target) {
-        if (!origin.isOnDiagonal(target))
-            return 0;
-        int betweenDiagonalPieces = 0;
-        for (Coordinate coordinate : origin.getBetweenDiagonalCoordinates(target))
-            if (this.getPiece(coordinate) != null)
-                betweenDiagonalPieces++;
         return betweenDiagonalPieces;
     }
 

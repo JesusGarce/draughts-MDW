@@ -1,5 +1,8 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import java.util.LinkedList;
+import java.util.List;
+
 enum Direction {
     NE(1, 1), 
     SE(-1, 1), 
@@ -30,6 +33,20 @@ enum Direction {
         int row = this.horizontalShift * distance;
         int column = this.verticalShift * distance;
         return new Coordinate(row, column);
+    }
+
+    static List<Direction> getNorthDirections(){
+        List<Direction> northDirections = new LinkedList<>();
+        northDirections.add(Direction.NE);
+        northDirections.add(Direction.NW);
+        return northDirections;
+    }
+
+    static List<Direction> getSouthDirections(){
+        List<Direction> southDirections = new LinkedList<>();
+        southDirections.add(Direction.SE);
+        southDirections.add(Direction.SW);
+        return southDirections;
     }
 
 }

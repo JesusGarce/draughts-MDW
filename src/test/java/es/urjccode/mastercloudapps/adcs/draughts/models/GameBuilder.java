@@ -8,10 +8,17 @@ public class GameBuilder {
 
     private Color color;
     private List<String> strings;
+    private Board board;
 
     public GameBuilder() {
         this.color = null;
         this.strings = new ArrayList<String>();
+        this.board = new Board();
+    }
+
+    public GameBuilder board(Board board){
+        this.board = board;
+        return this;
     }
 
     public GameBuilder color(Color color){
@@ -30,7 +37,6 @@ public class GameBuilder {
     public Game build() {
         if (this.strings.size() == 0)
             return new Game();
-        Board board = new Board();
         Game game = new Game(board);
         assert this.strings.size() == Coordinate.getDimension();
         this.setColor(game, board);

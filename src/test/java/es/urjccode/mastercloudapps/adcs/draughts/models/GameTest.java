@@ -13,4 +13,12 @@ public class GameTest {
         this.expectedGame = new GameBuilder().color(color).rows(strings).build();
     }
 
+    protected void setGameWithoutRandomBoard(Color color, String... strings) {
+        this.game = new GameBuilder().board(new BoardMockWithNoRandom()).color(color).rows(strings).build();
+    }
+
+    protected void setExpectedGameWithoutRandomBoard(Color color, String... strings) {
+        this.expectedGame = new GameBuilder().board(new BoardMockWithNoRandom()).color(color).rows(strings).build();
+    }
+
 }
